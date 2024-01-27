@@ -1,4 +1,4 @@
-function handleRegister(req, res, bcrypt, db) {
+const handleRegister = (db, bcrypt) => (req, res) => {
   const { name, email, password } = req.body;
   const hash = bcrypt.hashSync(password);
   db.transaction((trx) => {
@@ -23,7 +23,7 @@ function handleRegister(req, res, bcrypt, db) {
       .then(trx.commit)
       .catch(trx.rollback);
   });
-}
+};
 
 module.exports = {
   handleRegister: handleRegister,

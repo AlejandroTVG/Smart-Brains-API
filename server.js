@@ -23,21 +23,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post("/signin", (req, res) => {
-  handleSignin(req, res, db, bcrypt);
-});
+app.post("/signin", handleSignin(db, bcrypt));
 
-app.post("/register", (req, res) => {
-  handleRegister(req, res, bcrypt, db);
-});
+app.post("/register", handleRegister(db, bcrypt));
 
-app.get("/profile/:id", (req, res) => {
-  handleProfile(req, res, db);
-});
+app.get("/profile/:id", handleProfile(db));
 
-app.put("/image", (req, res) => {
-  handleImage(req, res, db);
-});
+app.put("/image", handleImage(db));
 
 app.listen(3000, () => {
   console.log("app running port 3000");

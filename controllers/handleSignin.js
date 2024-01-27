@@ -1,4 +1,4 @@
-function handleSignin(req, res, db, bcrypt) {
+const handleSignin = (db, bcrypt) => (req, res) => {
   db.select("*")
     .from("login")
     .where("email", "=", req.body.email)
@@ -16,7 +16,7 @@ function handleSignin(req, res, db, bcrypt) {
         res.status(400).json("Wrong Credentials");
       }
     });
-}
+};
 
 module.exports = {
   handleSignin: handleSignin,
